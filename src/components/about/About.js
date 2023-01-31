@@ -55,7 +55,7 @@ const About = () => {
     <>
       <div id="about">
         <div>
-          <h2>About</h2>
+          <h2>About S</h2>
           <p>
             Hello! My name is Fuzail Akhtar and I am a self taught frontend
             developer.
