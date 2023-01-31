@@ -19,6 +19,10 @@
     "timers-browserify": "^2.0.12",
     "web-vitals": "^2.1.4"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fuzail83/portfolio_example.git"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
