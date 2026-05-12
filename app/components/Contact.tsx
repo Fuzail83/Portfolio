@@ -74,7 +74,6 @@ export default function Contact() {
         </div>
 
         <div className="contact-grid">
-          {/* LEFT SIDE */}
           <div className="reveal">
             <p className="contact-intro">
               I'm open to new opportunities, freelance projects, or just a good
@@ -82,9 +81,7 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* RIGHT SIDE FORM */}
           <div className="reveal reveal-delay-2">
-            {/* ✅ FORM ADDED */}
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-row">
                 <div className="form-group">
@@ -129,7 +126,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* ✅ BUTTON FIX */}
               <button type="submit" disabled={status === "sending"}>
                 {status === "idle"
                   ? "Send Message →"
