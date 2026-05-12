@@ -84,7 +84,7 @@ export default function Contact() {
         {
           name: form.name,
           email: form.email,
-          phone: form.phone,
+          message: form.message,
         },
         "zx8-ghAUzWwyU9vbE",
       );
