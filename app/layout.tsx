@@ -14,16 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        {children}
-        <form name="contact" data-netlify="true" hidden>
-          <input type="hidden" name="form-name" value="contact" />
-          <input type="text" name="name" />
-          <input type="email" name="email" />
-          <input type="text" name="subject" />
-          <textarea name="message"></textarea>
-        </form>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
