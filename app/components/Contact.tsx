@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import emailjs from "emailjs-com";
+import ContactFormValidationRules from "../ValidationRules/ContactFormValidationRules";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -9,6 +10,7 @@ export default function Contact() {
     phone: "",
     message: "",
   });
+  const [errors, setErrors] = useState({});
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
   const ref = useRef<HTMLDivElement>(null);
 
@@ -29,15 +31,40 @@ export default function Contact() {
     return () => observer.disconnect();
   }, []);
 
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+
+    if (name === "phone") {
+      value = value.replace(/\D/g, "");
+
+      value = value.slice(0, 12);
+    }
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
+  };
+
   const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.message) {
-      alert("Please fill in all required fields.");
+    const validationErrors = ContactFormValidationRules(form);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
+
+    setErrors({});
 
     setStatus("sending");
 
     try {
+      //  Admin mail
       await emailjs.send(
         "service_dfi1w1f",
         "template_5s11jjb",
@@ -46,6 +73,18 @@ export default function Contact() {
           email: form.email,
           phone: form.phone,
           message: form.message,
+        },
+        "zx8-ghAUzWwyU9vbE",
+      );
+
+      //  User auto-reply mail
+      await emailjs.send(
+        "service_dfi1w1f",
+        "template_ukrbeea",
+        {
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
         },
         "zx8-ghAUzWwyU9vbE",
       );
@@ -135,45 +174,80 @@ export default function Contact() {
                 <div className="form-group">
                   <label className="form-label">YOUR NAME</label>
                   <input
+                    name="name"
                     className="form-input"
                     type="text"
                     placeholder="Your Name"
                     value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    onChange={handleChange}
                   />
+                  {errors.name && (
+                    <p
+                      style={{
+                        color: "red",
+                        fontSize: "12px",
+                        marginTop: "5px",
+                      }}
+                    >
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
                 <div className="form-group">
                   <label className="form-label">EMAIL ADDRESS</label>
                   <input
+                    name="email"
                     className="form-input"
                     type="email"
                     placeholder="hello@example.com"
                     value={form.email}
-                    onChange={(e) =>
-                      setForm({ ...form, email: e.target.value })
-                    }
+                    onChange={handleChange}
                   />
+                  {errors.email && (
+                    <p
+                      style={{
+                        color: "red",
+                        fontSize: "12px",
+                        marginTop: "5px",
+                      }}
+                    >
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="form-group">
                 <label className="form-label">PHONE NUMBER</label>
                 <input
+                  name="phone"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  type="tel"
                   className="form-input"
-                  type="text"
                   placeholder="Phone Number"
                   value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  onChange={handleChange}
                 />
+                {errors.phone && (
+                  <p
+                    style={{
+                      color: "red",
+                      fontSize: "12px",
+                      marginTop: "5px",
+                    }}
+                  >
+                    {errors.phone}
+                  </p>
+                )}
               </div>
               <div className="form-group">
                 <label className="form-label">MESSAGE</label>
                 <textarea
+                  name="message"
                   className="form-textarea"
                   placeholder="Hi Fuzail, I'd like to discuss..."
                   value={form.message}
-                  onChange={(e) =>
-                    setForm({ ...form, message: e.target.value })
-                  }
+                  onChange={handleChange}
                 />
               </div>
               <button
