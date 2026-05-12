@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 const expData = [
   {
     role: "React Developer",
-    company: "Current Company",
+    company: " Texala India Pvt. Ltd.",
     period: "2022 – Present · On-site / Hybrid",
     bullets: [
       "Working as a React.js developer building production-grade web applications.",
