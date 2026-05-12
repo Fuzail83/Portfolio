@@ -10,7 +10,7 @@ export default function Contact() {
     phone: "",
     message: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<any>({});
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
   const ref = useRef<HTMLDivElement>(null);
 
@@ -31,7 +31,7 @@ export default function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     let { name, value } = e.target;
 
     if (name === "phone") {
@@ -45,7 +45,7 @@ export default function Contact() {
       [name]: value,
     }));
 
-    setErrors((prev) => ({
+    setErrors((prev: any) => ({
       ...prev,
       [name]: "",
     }));
