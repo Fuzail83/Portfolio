@@ -6,7 +6,7 @@ export default function Contact() {
     name: "",
     email: "",
     subject: "",
-    message: "",
+    message: "", 
   });
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
   const ref = useRef<HTMLDivElement>(null);
