@@ -156,7 +156,7 @@ export default function Contact() {
                 </div>
               </div>
               <div className="form-group">
-                <label className="form-label">PHONE NUMBERa</label>
+                <label className="form-label">PHONE NUMBER</label>
                 <input
                   className="form-input"
                   type="text"
