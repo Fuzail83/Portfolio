@@ -120,8 +120,8 @@ export default function Contact() {
                   icon: "✉️",
                   label: "EMAIL",
                   val: (
-                    <a href="mailto:fuzailakhtar@email.com">
-                      fuzailakhtar0497@email.com
+                    <a href="mailto:fuzailakhtar0497@gmail.com">
+                      fuzailakhtar0497@gmail.com
                     </a>
                   ),
                 },
@@ -130,7 +130,7 @@ export default function Contact() {
                   label: "LINKEDIN",
                   val: (
                     <a
-                      href="www.linkedin.com/in/fuzail-akhtar-26b6b715a"
+                      href="https://www.linkedin.com/in/fuzail-akhtar-26b6b715a/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
